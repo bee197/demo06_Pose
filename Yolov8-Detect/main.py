@@ -80,7 +80,7 @@ def main():
     cap = cv.VideoCapture(video_setting, cv.CAP_GSTREAMER)
     cap.set(cv.CAP_PROP_FPS, 30)
     cap = cv.VideoCapture('image/smoke2.mp4')
-    infer = LoadEngineModel('detect.engine')
+    infer = LoadEngineModel('detect3.engine')
     print('模型加载成功！')
     i = 0
     try:

@@ -8,7 +8,7 @@ import tensorrt as trt
 import torch
 from torchvision import ops
 
-from Yolov8.utils2 import LoadLSTMEngine
+from utils2 import LoadLSTMEngine
 from utils import format_img, gstreamer_pipeline
 from utils1 import format_img, draw_on_src, gstreamer_pipeline
 from main import LoadEngineModel
@@ -610,7 +610,7 @@ if __name__ == '__main__':
     display_height = 720
     framerate = 60
     flip_method = 0
-    TYPE_LIST = [False, False, True, True, True, False]
+    TYPE_LIST = [True, False, False, True, False, False]
     AREA_LIST = [(0, 0), (640, 640)]
     frame = 0
     is_pose = False
@@ -622,11 +622,13 @@ if __name__ == '__main__':
     #   加载模型
     # ---------------------------------------------------------#
 
-    infer = LoadPoseEngine('yolov8n-pose2.engine')
-    infer1 = LoadEngineModel('detect7.engine')
+    infer = LoadPoseEngine('yolov8n-pose.engine')
+    # infer1 = LoadEngineModel('detect7.engine')
+    infer1 = None
     # model = LoadLSTMEngine('models/lstm.engine')
-    model = lstm()
-    model.load('models/lstm.pth')
+    model = None
+    # model = lstm()
+    # model.load('models/lstm.pth')
     print('模型加载完成！')
 
     # ---------------------------------------------------------#
@@ -649,10 +651,6 @@ if __name__ == '__main__':
         # 读取图片
         # np_img = cv2.imread("image/fire2.mp4")  # 替换为您的图片路径
         f, np_img = cap.read()
-        # 显示图片
-        cv2.imshow("1", np_img)
-        if cv2.waitKey(1) == ord('q'):
-            exit(0)
         # np_img = cv2.resize(np_img, (640, 640))
 
         # 摄像头停止就关闭

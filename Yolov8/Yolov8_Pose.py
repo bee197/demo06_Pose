@@ -8,7 +8,7 @@ import tensorrt as trt
 import torch
 from torchvision import ops
 
-from Yolov8.main import LoadEngineModel
+from main import LoadEngineModel
 from utils import format_img, gstreamer_pipeline
 from utils2 import LoadLSTMEngine
 
